@@ -1,0 +1,24 @@
+//
+//  PrefixHeader.pch
+//  AliPayHome
+//
+//  Created by chenergou on 2017/10/31.
+//  Copyright © 2017年 漫漫. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#define WeakSelf(weakSelf)  __weak __typeof(self) weakSelf = self;
+#define NAVH (MAX(Device_Width, Device_Height)  == 812 ? 88 : 64)
+#define TABBARH 49
+#define Device_Width  [[UIScreen mainScreen] bounds].size.width//获取屏幕宽高
+#define Device_Height [[UIScreen mainScreen] bounds].size.height
+#import "LxButton.h"
+#import "UIColor+Expanded.h"
+#import "UILabel+LXLabel.h"
+#import "UIView+LX_Frame.h"
+#endif /* PrefixHeader_pch */
