@@ -5,7 +5,7 @@
 
 ![image](https://github.com/liuxinixn/LXCalendar/blob/master/%E6%97%A5%E5%8E%86.gif)
 
-
+```
 typedef void (^SelectBlock) (NSInteger year ,NSInteger month ,NSInteger day);
 @interface LXCalendarView : UIView
 /*
@@ -60,7 +60,7 @@ typedef void (^SelectBlock) (NSInteger year ,NSInteger month ,NSInteger day);
 
 //选中的回调
 @property(nonatomic,copy)SelectBlock selectBlock;
-
+```
 
 使用方法：
 ```
