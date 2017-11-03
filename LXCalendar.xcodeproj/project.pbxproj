@@ -19,7 +19,6 @@
 		F371FF6A1FAB1DE100F33EEC /* UIColor+Expanded.m in Sources */ = {isa = PBXBuildFile; fileRef = F371FF641FAB1DE100F33EEC /* UIColor+Expanded.m */; };
 		F371FF6B1FAB1DE100F33EEC /* UILabel+LXLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F371FF661FAB1DE100F33EEC /* UILabel+LXLabel.m */; };
 		F371FF6C1FAB1DE100F33EEC /* UIView+LX_Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = F371FF681FAB1DE100F33EEC /* UIView+LX_Frame.m */; };
-		F371FF701FAB1E7100F33EEC /* NextController.m in Sources */ = {isa = PBXBuildFile; fileRef = F371FF6F1FAB1E7100F33EEC /* NextController.m */; };
 		F371FF751FAB1EA900F33EEC /* LXCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = F371FF741FAB1EA900F33EEC /* LXCalendarView.m */; };
 		F371FF781FAB21F100F33EEC /* LXCalendarHearder.m in Sources */ = {isa = PBXBuildFile; fileRef = F371FF771FAB21F100F33EEC /* LXCalendarHearder.m */; };
 		F371FF7A1FAB220100F33EEC /* LXCalendarHearder.xib in Resources */ = {isa = PBXBuildFile; fileRef = F371FF791FAB220100F33EEC /* LXCalendarHearder.xib */; };
@@ -28,6 +27,11 @@
 		F371FF841FAB284600F33EEC /* LXCalenderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F371FF821FAB284600F33EEC /* LXCalenderCell.xib */; };
 		F371FF871FAB3AB800F33EEC /* LXCalendarMonthModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F371FF861FAB3AB800F33EEC /* LXCalendarMonthModel.m */; };
 		F371FF8A1FAB3AE400F33EEC /* NSDate+GFCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = F371FF891FAB3AE400F33EEC /* NSDate+GFCalendar.m */; };
+		F3F6DB871FABF51200420422 /* LXCalendarDayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F3F6DB861FABF51200420422 /* LXCalendarDayModel.m */; };
+		F3F6DB8A1FAC02E600420422 /* UIView+FTCornerdious.m in Sources */ = {isa = PBXBuildFile; fileRef = F3F6DB891FAC02E600420422 /* UIView+FTCornerdious.m */; };
+		F3F6DB8E1FAC0EF200420422 /* LXCalendarOneController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3F6DB8D1FAC0EF200420422 /* LXCalendarOneController.m */; };
+		F3F6DB911FAC0F0500420422 /* LXCalendarTwoController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3F6DB901FAC0F0500420422 /* LXCalendarTwoController.m */; };
+		F3F6DB941FAC0F1200420422 /* LXCalendarThreeController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3F6DB931FAC0F1200420422 /* LXCalendarThreeController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,8 +77,6 @@
 		F371FF671FAB1DE100F33EEC /* UIView+LX_Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+LX_Frame.h"; sourceTree = "<group>"; };
 		F371FF681FAB1DE100F33EEC /* UIView+LX_Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LX_Frame.m"; sourceTree = "<group>"; };
 		F371FF6D1FAB1DEF00F33EEC /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
-		F371FF6E1FAB1E7100F33EEC /* NextController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NextController.h; sourceTree = "<group>"; };
-		F371FF6F1FAB1E7100F33EEC /* NextController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NextController.m; sourceTree = "<group>"; };
 		F371FF721FAB1E8700F33EEC /* LXCalender.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXCalender.h; sourceTree = "<group>"; };
 		F371FF731FAB1EA900F33EEC /* LXCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXCalendarView.h; sourceTree = "<group>"; };
 		F371FF741FAB1EA900F33EEC /* LXCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXCalendarView.m; sourceTree = "<group>"; };
@@ -90,6 +92,16 @@
 		F371FF861FAB3AB800F33EEC /* LXCalendarMonthModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXCalendarMonthModel.m; sourceTree = "<group>"; };
 		F371FF881FAB3AE400F33EEC /* NSDate+GFCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+GFCalendar.h"; sourceTree = "<group>"; };
 		F371FF891FAB3AE400F33EEC /* NSDate+GFCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+GFCalendar.m"; sourceTree = "<group>"; };
+		F3F6DB851FABF51200420422 /* LXCalendarDayModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXCalendarDayModel.h; sourceTree = "<group>"; };
+		F3F6DB861FABF51200420422 /* LXCalendarDayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXCalendarDayModel.m; sourceTree = "<group>"; };
+		F3F6DB881FAC02E600420422 /* UIView+FTCornerdious.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FTCornerdious.h"; sourceTree = "<group>"; };
+		F3F6DB891FAC02E600420422 /* UIView+FTCornerdious.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FTCornerdious.m"; sourceTree = "<group>"; };
+		F3F6DB8C1FAC0EF200420422 /* LXCalendarOneController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXCalendarOneController.h; sourceTree = "<group>"; };
+		F3F6DB8D1FAC0EF200420422 /* LXCalendarOneController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXCalendarOneController.m; sourceTree = "<group>"; };
+		F3F6DB8F1FAC0F0500420422 /* LXCalendarTwoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXCalendarTwoController.h; sourceTree = "<group>"; };
+		F3F6DB901FAC0F0500420422 /* LXCalendarTwoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXCalendarTwoController.m; sourceTree = "<group>"; };
+		F3F6DB921FAC0F1200420422 /* LXCalendarThreeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXCalendarThreeController.h; sourceTree = "<group>"; };
+		F3F6DB931FAC0F1200420422 /* LXCalendarThreeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXCalendarThreeController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,8 +156,7 @@
 				F371FF311FAB1DC000F33EEC /* AppDelegate.m */,
 				F371FF331FAB1DC000F33EEC /* ViewController.h */,
 				F371FF341FAB1DC000F33EEC /* ViewController.m */,
-				F371FF6E1FAB1E7100F33EEC /* NextController.h */,
-				F371FF6F1FAB1E7100F33EEC /* NextController.m */,
+				F3F6DB8B1FAC0EDC00420422 /* Controllers */,
 				F371FF711FAB1E7A00F33EEC /* LXCalendar */,
 				F371FF361FAB1DC000F33EEC /* Main.storyboard */,
 				F371FF601FAB1DE100F33EEC /* Category */,
@@ -187,6 +198,8 @@
 		F371FF601FAB1DE100F33EEC /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				F3F6DB881FAC02E600420422 /* UIView+FTCornerdious.h */,
+				F3F6DB891FAC02E600420422 /* UIView+FTCornerdious.m */,
 				F371FF611FAB1DE100F33EEC /* LxButton.h */,
 				F371FF621FAB1DE100F33EEC /* LxButton.m */,
 				F371FF631FAB1DE100F33EEC /* UIColor+Expanded.h */,
@@ -215,10 +228,25 @@
 				F371FF821FAB284600F33EEC /* LXCalenderCell.xib */,
 				F371FF851FAB3AB800F33EEC /* LXCalendarMonthModel.h */,
 				F371FF861FAB3AB800F33EEC /* LXCalendarMonthModel.m */,
+				F3F6DB851FABF51200420422 /* LXCalendarDayModel.h */,
+				F3F6DB861FABF51200420422 /* LXCalendarDayModel.m */,
 				F371FF881FAB3AE400F33EEC /* NSDate+GFCalendar.h */,
 				F371FF891FAB3AE400F33EEC /* NSDate+GFCalendar.m */,
 			);
 			path = LXCalendar;
+			sourceTree = "<group>";
+		};
+		F3F6DB8B1FAC0EDC00420422 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F3F6DB8C1FAC0EF200420422 /* LXCalendarOneController.h */,
+				F3F6DB8D1FAC0EF200420422 /* LXCalendarOneController.m */,
+				F3F6DB8F1FAC0F0500420422 /* LXCalendarTwoController.h */,
+				F3F6DB901FAC0F0500420422 /* LXCalendarTwoController.m */,
+				F3F6DB921FAC0F1200420422 /* LXCalendarThreeController.h */,
+				F3F6DB931FAC0F1200420422 /* LXCalendarThreeController.m */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -358,16 +386,20 @@
 			files = (
 				F371FF751FAB1EA900F33EEC /* LXCalendarView.m in Sources */,
 				F371FF871FAB3AB800F33EEC /* LXCalendarMonthModel.m in Sources */,
+				F3F6DB911FAC0F0500420422 /* LXCalendarTwoController.m in Sources */,
 				F371FF831FAB284600F33EEC /* LXCalenderCell.m in Sources */,
 				F371FF8A1FAB3AE400F33EEC /* NSDate+GFCalendar.m in Sources */,
 				F371FF351FAB1DC000F33EEC /* ViewController.m in Sources */,
 				F371FF6B1FAB1DE100F33EEC /* UILabel+LXLabel.m in Sources */,
 				F371FF6C1FAB1DE100F33EEC /* UIView+LX_Frame.m in Sources */,
+				F3F6DB8E1FAC0EF200420422 /* LXCalendarOneController.m in Sources */,
+				F3F6DB941FAC0F1200420422 /* LXCalendarThreeController.m in Sources */,
 				F371FF691FAB1DE100F33EEC /* LxButton.m in Sources */,
+				F3F6DB871FABF51200420422 /* LXCalendarDayModel.m in Sources */,
 				F371FF321FAB1DC000F33EEC /* AppDelegate.m in Sources */,
 				F371FF7D1FAB221900F33EEC /* LXCalendarWeekView.m in Sources */,
 				F371FF2F1FAB1DC000F33EEC /* main.m in Sources */,
-				F371FF701FAB1E7100F33EEC /* NextController.m in Sources */,
+				F3F6DB8A1FAC02E600420422 /* UIView+FTCornerdious.m in Sources */,
 				F371FF6A1FAB1DE100F33EEC /* UIColor+Expanded.m in Sources */,
 				F371FF781FAB21F100F33EEC /* LXCalendarHearder.m in Sources */,
 			);
@@ -603,6 +635,7 @@
 				F371FF591FAB1DC000F33EEC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F371FF5A1FAB1DC000F33EEC /* Build configuration list for PBXNativeTarget "LXCalendarTests" */ = {
 			isa = XCConfigurationList;
@@ -611,6 +644,7 @@
 				F371FF5C1FAB1DC000F33EEC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F371FF5D1FAB1DC000F33EEC /* Build configuration list for PBXNativeTarget "LXCalendarUITests" */ = {
 			isa = XCConfigurationList;
@@ -619,6 +653,7 @@
 				F371FF5F1FAB1DC000F33EEC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

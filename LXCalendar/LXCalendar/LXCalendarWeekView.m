@@ -24,7 +24,7 @@
     CGFloat width = self.lx_width /weekTitles.count;
     for (int i = 0; i< weekTitles.count; i++) {
         UILabel *weekLabel =[UILabel LXLabelWithText:weekTitles[i] textColor:[UIColor hexStringToColor:@"000000"] backgroundColor:[UIColor whiteColor] frame:CGRectMake(i * width, 0, width, self.lx_height) font:Font(14) textAlignment:NSTextAlignmentCenter];
-        weekLabel.backgroundColor =[UIColor cyanColor];
+        weekLabel.backgroundColor =[UIColor whiteColor];
         [self addSubview:weekLabel];
     }
 }

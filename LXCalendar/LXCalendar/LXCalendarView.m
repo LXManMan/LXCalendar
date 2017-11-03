@@ -12,12 +12,16 @@
 #import "LXCalenderCell.h"
 #import "LXCalendarMonthModel.h"
 #import "NSDate+GFCalendar.h"
+#import "LXCalendarDayModel.h"
 @interface LXCalendarView()<UICollectionViewDelegate,UICollectionViewDataSource>
-@property(nonatomic,strong)LXCalendarHearder *calendarHeader;
-@property(nonatomic,strong)LXCalendarWeekView *calendarWeekView;
-@property(nonatomic,strong)UICollectionView *collectionView;
-@property(nonatomic,strong)NSMutableArray *monthdataA;
-@property(nonatomic,strong)NSDate *currentMonthDate;
+@property(nonatomic,strong)LXCalendarHearder *calendarHeader; //头部
+@property(nonatomic,strong)LXCalendarWeekView *calendarWeekView;//周
+@property(nonatomic,strong)UICollectionView *collectionView;//日历
+@property(nonatomic,strong)NSMutableArray *monthdataA;//当月的模型集合
+@property(nonatomic,strong)NSDate *currentMonthDate;//当月的日期
+@property(nonatomic,strong)UISwipeGestureRecognizer *leftSwipe;//左滑手势
+@property(nonatomic,strong)UISwipeGestureRecognizer *rightSwipe;//右滑手势
+
 
 @end
 @implementation LXCalendarView
@@ -31,9 +35,14 @@
         
         [self setup];
         
-        [self responData];
+        
     }
     return self;
+}
+-(void)dealData{
+    
+    
+    [self responData];
 }
 -(void)setup{
     [self addSubview:self.calendarHeader];
@@ -55,15 +64,15 @@
     
     
     //添加左滑右滑手势
-    UISwipeGestureRecognizer *leftSwipe =[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(leftSwipe:)];
-    leftSwipe.direction = UISwipeGestureRecognizerDirectionLeft;
+   self.leftSwipe =[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(leftSwipe:)];
+   self.leftSwipe.direction = UISwipeGestureRecognizerDirectionLeft;
     
-    [self.collectionView addGestureRecognizer:leftSwipe];
+    [self.collectionView addGestureRecognizer:self.leftSwipe];
     
-    UISwipeGestureRecognizer *rightSwipe =[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(rightSwipe:)];
-    rightSwipe.direction = UISwipeGestureRecognizerDirectionRight;
+    self.rightSwipe =[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(rightSwipe:)];
+    self.rightSwipe.direction = UISwipeGestureRecognizerDirectionRight;
     
-    [self.collectionView addGestureRecognizer:rightSwipe];
+    [self.collectionView addGestureRecognizer:self.rightSwipe];
 }
 #pragma mark --左滑手势--
 -(void)leftSwipe:(UISwipeGestureRecognizer *)swipe{
@@ -94,7 +103,7 @@
 - (void)performAnimations:(NSString *)transition{
     CATransition *catransition = [CATransition animation];
     catransition.duration = 0.5;
-    [catransition setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear]];
+    [catransition setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
     catransition.type = kCATransitionPush; //choose your animation
     catransition.subtype = transition;
     [self.collectionView.layer addAnimation:catransition forKey:nil];
@@ -107,20 +116,95 @@
     
     NSDate *previousMonthDate = [self.currentMonthDate previousMonthDate];
     
-    [self.monthdataA addObject:[[LXCalendarMonthModel alloc] initWithDate:previousMonthDate]];
     NSDate *nextMonthDate = [self.currentMonthDate  nextMonthDate];
-   
-    LXCalendarMonthModel *model = [[LXCalendarMonthModel alloc]initWithDate:self.currentMonthDate];
-    [self.monthdataA addObject:model];
     
-    [self.monthdataA addObject:[[LXCalendarMonthModel alloc] initWithDate:nextMonthDate]];
+    LXCalendarMonthModel *monthModel = [[LXCalendarMonthModel alloc]initWithDate:self.currentMonthDate];
+    
+    LXCalendarMonthModel *lastMonthModel = [[LXCalendarMonthModel alloc]initWithDate:previousMonthDate];
+    
+     LXCalendarMonthModel *nextMonthModel = [[LXCalendarMonthModel alloc]initWithDate:nextMonthDate];
+    
+    self.calendarHeader.dateStr = [NSString stringWithFormat:@"%ld年%ld月",monthModel.year,monthModel.month];
+    
+    NSInteger firstWeekday = monthModel.firstWeekday;
+    
+    NSInteger totalDays = monthModel.totalDays;
 
-    self.calendarHeader.dateStr = [NSString stringWithFormat:@"%ld年%ld月",model.year,model.month];
+    for (int i = 0; i <42; i++) {
+        
+        LXCalendarDayModel *model =[[LXCalendarDayModel alloc]init];
+        
+        //配置外面属性
+        [self configDayModel:model];
+        
+        model.firstWeekday = firstWeekday;
+        model.totalDays = totalDays;
+        
+        model.month = monthModel.month;
+        
+        model.year = monthModel.year;
+        
+        
+        //上个月的日期
+        if (i < firstWeekday) {
+            model.day = lastMonthModel.totalDays - (firstWeekday - i) + 1;
+            model.isLastMonth = YES;
+        }
+        
+        //当月的日期
+        if (i >= firstWeekday && i < (firstWeekday + totalDays)) {
+            
+            model.day = i -firstWeekday +1;
+            model.isCurrentMonth = YES;
+            
+            //标识是今天
+            if ((monthModel.month == [[NSDate date] dateMonth]) && (monthModel.year == [[NSDate date] dateYear])) {
+                if (i == [[NSDate date] dateDay] + firstWeekday - 1) {
+                    
+                    model.isToday = YES;
+                    
+                }                 
+            }
+            
+        }
+         //下月的日期
+        if (i >= (firstWeekday + monthModel.totalDays)) {
+            
+            model.day = i -firstWeekday - nextMonthModel.totalDays +1;
+            model.isNextMonth = YES;
+            
+        }
+        
+        [self.monthdataA addObject:model];
+        
+    }
+    
     [self.collectionView reloadData];
     
 }
+-(void)configDayModel:(LXCalendarDayModel *)model{
+    
+
+    //配置外面属性
+    model.isHaveAnimation = self.isHaveAnimation;
+    
+    model.currentMonthTitleColor = self.currentMonthTitleColor;
+    
+    model.lastMonthTitleColor = self.lastMonthTitleColor;
+    
+    model.nextMonthTitleColor = self.nextMonthTitleColor;
+    
+    model.selectBackColor = self.selectBackColor;
+    
+    model.isHaveAnimation = self.isHaveAnimation;
+    
+    model.todayTitleColor = self.todayTitleColor;
+    
+    model.isShowLastAndNextDate = self.isShowLastAndNextDate;
+
+}
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return 35;
+    return self.monthdataA.count;
 }
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -131,43 +215,10 @@
         
     }
     
-    LXCalendarMonthModel *monthModdel = self.monthdataA[1];
-    
-    NSInteger firstWeekday = monthModdel.firstWeekday;
-    NSInteger totalDays = monthModdel.totalDays;
-    // 当前月
-    if (indexPath.row >= firstWeekday && indexPath.row < firstWeekday + totalDays) {
-        cell.label.text = [NSString stringWithFormat:@"%ld", indexPath.row - firstWeekday + 1];
-        cell.label.textColor = [UIColor darkTextColor];
-        cell.userInteractionEnabled = YES;
-        
-        // 标识今天
-        if ((monthModdel.month == [[NSDate date] dateMonth]) && (monthModdel.year == [[NSDate date] dateYear])) {
-            if (indexPath.row == [[NSDate date] dateDay] + firstWeekday - 1) {
-
-                cell.label.textColor = [UIColor redColor];
-            } else {
-
-            }
-        } else {
-        }
-        
-    }
-    // 补上前后月的日期，淡色显示
-    else if (indexPath.row < firstWeekday) {
-        LXCalendarMonthModel *lastMonthInfo = self.monthdataA[0];
-        NSInteger totalDaysOflastMonth = lastMonthInfo.totalDays;
-        cell.label.text = [NSString stringWithFormat:@"%ld", totalDaysOflastMonth - (firstWeekday - indexPath.row) + 1];
-        cell.label.textColor = [UIColor colorWithWhite:0.85 alpha:1.0];
-        cell.userInteractionEnabled = NO;
-    } else if (indexPath.row >= firstWeekday + totalDays) {
-        cell.label.text = [NSString stringWithFormat:@"%ld", indexPath.row - firstWeekday - totalDays + 1];
-        cell.label.textColor = [UIColor colorWithWhite:0.85 alpha:1.0];
-        cell.userInteractionEnabled = NO;
-    }
-
+    cell.model = self.monthdataA[indexPath.row];
 
     cell.backgroundColor =[UIColor whiteColor];
+    
     
     return cell;
 }
@@ -175,6 +226,20 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
    
+    LXCalendarDayModel *model = self.monthdataA[indexPath.row];
+    model.isSelected = YES;
+    
+    [self.monthdataA enumerateObjectsUsingBlock:^(LXCalendarDayModel *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        if (obj != model) {
+            obj.isSelected = NO;
+        }
+    }];
+    
+    if (self.selectBlock) {
+        self.selectBlock(model.year, model.month, model.day);
+    }
+    [collectionView reloadData];
     
 }
 -(void)layoutSubviews{
@@ -227,5 +292,73 @@
         _monthdataA =[NSMutableArray array];
     }
     return _monthdataA;
+}
+
+/*
+ * 当前月的title颜色
+ */
+-(void)setCurrentMonthTitleColor:(UIColor *)currentMonthTitleColor{
+    _currentMonthTitleColor = currentMonthTitleColor;
+}
+/*
+ * 上月的title颜色
+ */
+-(void)setLastMonthTitleColor:(UIColor *)lastMonthTitleColor{
+    _lastMonthTitleColor = lastMonthTitleColor;
+}
+/*
+ * 下月的title颜色
+ */
+-(void)setNextMonthTitleColor:(UIColor *)nextMonthTitleColor{
+    _nextMonthTitleColor = nextMonthTitleColor;
+}
+
+/*
+ * 选中的背景颜色
+ */
+-(void)setSelectBackColor:(UIColor *)selectBackColor{
+    _selectBackColor = selectBackColor;
+}
+
+/*
+ * 选中的是否动画效果
+ */
+
+-(void)setIsHaveAnimation:(BOOL)isHaveAnimation{
+    
+    _isHaveAnimation  = isHaveAnimation;
+}
+
+/*
+ * 是否禁止手势滚动
+ */
+-(void)setIsCanScroll:(BOOL)isCanScroll{
+    _isCanScroll = isCanScroll;
+    
+    self.leftSwipe.enabled = self.rightSwipe.enabled = isCanScroll;
+}
+
+/*
+ * 是否显示上月，下月的按钮
+ */
+
+-(void)setIsShowLastAndNextBtn:(BOOL)isShowLastAndNextBtn{
+    _isShowLastAndNextBtn  = isShowLastAndNextBtn;
+    self.calendarHeader.isShowLeftAndRightBtn = isShowLastAndNextBtn;
+}
+
+
+/*
+ * 是否显示上月，下月的的数据
+ */
+-(void)setIsShowLastAndNextDate:(BOOL)isShowLastAndNextDate{
+    _isShowLastAndNextDate =  isShowLastAndNextDate;
+}
+/*
+ * 今日的title颜色
+ */
+
+-(void)setTodayTitleColor:(UIColor *)todayTitleColor{
+    _todayTitleColor = todayTitleColor;
 }
 @end

@@ -19,7 +19,7 @@ typedef void (^rightClickBlock) ();
 
 +(LXCalendarHearder *)showView;
 
--(void)hideLeftBtnAndRightBtn;
+@property(nonatomic,assign)BOOL isShowLeftAndRightBtn; //是否显示左右两侧按钮
 
 @property(nonatomic,strong)NSString *dateStr;
 @end

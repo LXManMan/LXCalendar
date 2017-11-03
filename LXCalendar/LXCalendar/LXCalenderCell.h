@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "LXCalendarDayModel.h"
 @interface LXCalenderCell : UICollectionViewCell
-@property (weak, nonatomic) IBOutlet UILabel *label;
 
+@property(nonatomic,strong)LXCalendarDayModel *model;
 @end

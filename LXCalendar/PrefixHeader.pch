@@ -21,4 +21,5 @@
 #import "UIColor+Expanded.h"
 #import "UILabel+LXLabel.h"
 #import "UIView+LX_Frame.h"
+#import "UIView+FTCornerdious.h"
 #endif /* PrefixHeader_pch */

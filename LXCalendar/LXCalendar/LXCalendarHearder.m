@@ -35,6 +35,10 @@
         self.rightClickBlock();
     }
 }
+-(void)setIsShowLeftAndRightBtn:(BOOL)isShowLeftAndRightBtn{
+    _isShowLeftAndRightBtn = isShowLeftAndRightBtn;
+    self.leftBtn.hidden = self.rightBtn.hidden = !isShowLeftAndRightBtn;
+}
 -(void)hideLeftBtnAndRightBtn{
     self.leftBtn.hidden = self.rightBtn.hidden = YES;
 }

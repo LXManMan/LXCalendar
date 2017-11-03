@@ -7,32 +7,68 @@
 //
 
 #import "ViewController.h"
-#import "NextController.h"
-@interface ViewController ()
-
+@interface ViewController ()<UITableViewDelegate,UITableViewDataSource>
+@property(nonatomic,strong)UITableView *tableview;
+@property(nonatomic,strong)NSArray *dataA;
 @end
 
 @implementation ViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    // Do any additional setup after loading the view.
     
-    LxButton *button =[LxButton LXButtonWithTitle:@"点击" titleFont:Font(14) Image:nil backgroundImage:nil backgroundColor:[UIColor redColor] titleColor:[UIColor hexStringToColor:@"000000"] frame:CGRectMake(20, 100, 100, 40)];
-    [self.view addSubview:button];
-    WeakSelf(weakSelf);
-    [button addClickBlock:^(UIButton *button) {
+    
+    self.title = @"日历demo";
+    self.view.backgroundColor =[UIColor whiteColor];
+    self.extendedLayoutIncludesOpaqueBars = YES;
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    [self setUp];
+}
+-(void)setUp{
+    [self.view addSubview:self.tableview];
+    
+}
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.dataA.count;
+}
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *cell =[tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    if (!cell) {
+        cell =[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+    }
+    
+    cell.textLabel.text = self.dataA[indexPath.row];
+    return cell;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    Class class = NSClassFromString([NSString stringWithFormat:@"%@Controller",self.dataA[indexPath.row]]);
+    [self.navigationController pushViewController:[class new] animated:YES];
+    
+}
+-(UITableView *)tableview{
+    
+    if (!_tableview) {
+        _tableview =[[UITableView alloc]initWithFrame:CGRectMake(0, NAVH, Device_Width, Device_Height - NAVH) style:UITableViewStylePlain];
+        _tableview.delegate = self;
+        _tableview.dataSource = self;
+        _tableview.showsVerticalScrollIndicator = NO;
+        _tableview.showsHorizontalScrollIndicator = NO;
+        _tableview.tableFooterView = [UIView new];
         
-        NextController *changeVc =[[NextController alloc]init];
-        [weakSelf.navigationController pushViewController:changeVc animated:YES];
-    }];
+        [_tableview registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+        
+    }
+    return _tableview;
 }
 
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(NSArray *)dataA{
+    if (!_dataA) {
+        _dataA = @[@"LXCalendarOne",@"LXCalendarTwo",@"LXCalendarThree"];
+    }
+    return _dataA;
 }
-
-
 @end
