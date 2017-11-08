@@ -21,6 +21,7 @@
 @property(nonatomic,strong)NSDate *currentMonthDate;//当月的日期
 @property(nonatomic,strong)UISwipeGestureRecognizer *leftSwipe;//左滑手势
 @property(nonatomic,strong)UISwipeGestureRecognizer *rightSwipe;//右滑手势
+@property(nonatomic,strong)LXCalendarDayModel *selectModel;
 
 
 @end
@@ -179,6 +180,12 @@
         
     }
     
+    [self.monthdataA enumerateObjectsUsingBlock:^(LXCalendarDayModel * obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        if ((obj.year == self.selectModel.year) && (obj.month == self.selectModel.month) && (obj.day == self.selectModel.day)) {
+            obj.isSelected = YES;
+        }
+    }];
     [self.collectionView reloadData];
     
 }
@@ -229,6 +236,8 @@
     LXCalendarDayModel *model = self.monthdataA[indexPath.row];
     model.isSelected = YES;
     
+    //选中的day
+    self.selectModel = model;
     [self.monthdataA enumerateObjectsUsingBlock:^(LXCalendarDayModel *obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
         if (obj != model) {
