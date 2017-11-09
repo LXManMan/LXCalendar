@@ -171,7 +171,7 @@
          //下月的日期
         if (i >= (firstWeekday + monthModel.totalDays)) {
             
-            model.day = i -firstWeekday - nextMonthModel.totalDays +1;
+            model.day = i -firstWeekday - monthModel.totalDays +1;
             model.isNextMonth = YES;
             
         }
@@ -179,6 +179,7 @@
         [self.monthdataA addObject:model];
         
     }
+    
     
     [self.monthdataA enumerateObjectsUsingBlock:^(LXCalendarDayModel * obj, NSUInteger idx, BOOL * _Nonnull stop) {
         

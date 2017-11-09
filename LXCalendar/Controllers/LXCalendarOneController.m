@@ -30,6 +30,8 @@
     
     self.calenderView.isHaveAnimation = NO;
     
+    
+    
     self.calenderView.isCanScroll = YES;
     self.calenderView.isShowLastAndNextBtn = NO;
     
