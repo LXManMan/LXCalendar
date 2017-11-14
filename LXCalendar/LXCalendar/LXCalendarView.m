@@ -117,13 +117,13 @@
     
     NSDate *previousMonthDate = [self.currentMonthDate previousMonthDate];
     
-    NSDate *nextMonthDate = [self.currentMonthDate  nextMonthDate];
+//    NSDate *nextMonthDate = [self.currentMonthDate  nextMonthDate];
     
     LXCalendarMonthModel *monthModel = [[LXCalendarMonthModel alloc]initWithDate:self.currentMonthDate];
     
     LXCalendarMonthModel *lastMonthModel = [[LXCalendarMonthModel alloc]initWithDate:previousMonthDate];
     
-     LXCalendarMonthModel *nextMonthModel = [[LXCalendarMonthModel alloc]initWithDate:nextMonthDate];
+//     LXCalendarMonthModel *nextMonthModel = [[LXCalendarMonthModel alloc]initWithDate:nextMonthDate];
     
     self.calendarHeader.dateStr = [NSString stringWithFormat:@"%ld年%ld月",monthModel.year,monthModel.month];
     

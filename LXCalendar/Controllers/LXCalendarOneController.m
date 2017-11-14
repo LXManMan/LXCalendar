@@ -48,8 +48,16 @@
     
     self.calenderView.selectBlock = ^(NSInteger year, NSInteger month, NSInteger day) {
         NSLog(@"%ld年 - %ld月 - %ld日",year,month,day);
+        NSString *string =[NSString stringWithFormat:@"%ld-%ld-%ld",year,month,day];
+        NSDate *date =[NSString dateFromTimeStr:string];
+        NSLog(@"%@",date);
     };
     
+    NSLog(@"%@",[NSString getNowTime]);
+    
+    NSDate *date =[NSString dateFromTimeStr:[NSString getNowTime]];
+    NSLog(@"%@",date);
+
 }
 
 

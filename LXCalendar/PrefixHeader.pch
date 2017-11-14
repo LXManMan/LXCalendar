@@ -22,4 +22,5 @@
 #import "UILabel+LXLabel.h"
 #import "UIView+LX_Frame.h"
 #import "UIView+FTCornerdious.h"
+#import "NSString+NCDate.h"
 #endif /* PrefixHeader_pch */
